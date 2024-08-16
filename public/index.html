@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spell Checker</title>
+</head>
+<body>
+    <h1>Spell Checker</h1>
+    <form id="spellCheckForm">
+        <textarea id="textInput" rows="4" cols="50" placeholder="Enter text here..."></textarea><br>
+        <button type="submit">Check Spelling</button>
+    </form>
+    <h3>Corrected Text:</h3>
+    <p id="correctedText"></p>
+
+    <script>
+        document.getElementById('spellCheckForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            
+            const textInput = document.getElementById('textInput').value;
+            const response = await fetch('/spellcheck', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ text: textInput })
+            });
+            
+            const result = await response.json();
+            document.getElementById('correctedText').textContent = result.correctedText;
+        });
+    </script>
+</body>
+</html>
