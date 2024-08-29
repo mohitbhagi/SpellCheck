@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const makeSpellCheckRequest = require('./spellcheck');
 
 const app = express();
-const port = 3000;
+const port = 8080;
 
 app.use(bodyParser.json());
 app.use(express.static('public'));
