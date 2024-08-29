@@ -1,0 +1,9 @@
+steps:
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    args:
+      - '-c'
+      - gcloud app deploy app.yaml
+    entrypoint: bash
+timeout: 1600s
+options:
+  logging: CLOUD_LOGGING_ONLY
